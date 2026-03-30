@@ -9,13 +9,27 @@ import { useGrowthData } from '@/hooks/useGrowthData'
 import { fmtDate } from '@/lib/utils'
 
 const COMP_COLORS: Record<string, string> = {
-  WaniKani: '#ff6b35',
-  Duolingo: '#58cc02',
-  Anki: '#1cb0f6',
-  Renshuu: '#9b59b6',
+  // Our apps
   'Kanji Mentor': '#ef4444',
-  'Kiku Mentor': '#6366f1',
-  'Yomu Mentor': '#14b8a6',
+  'Kiku Mentor':  '#6366f1',
+  'Yomu Mentor':  '#14b8a6',
+  // Competitors
+  'Duolingo':                 '#58cc02',
+  'LingoDeer':                '#f97316',
+  'Renshuu':                  '#9b59b6',
+  'Bunpo':                    '#0ea5e9',
+  'HelloTalk':                '#22d3ee',
+  'Pimsleur':                 '#f59e0b',
+  'JapanesePod101':           '#6366f1',
+  'Anki':                     '#1cb0f6',
+  'Kanji Study':              '#dc2626',
+  'Tsurukame (WaniKani)':     '#ff6b35',
+  'Clozemaster':              '#8b5cf6',
+  'Migaku':                   '#ec4899',
+  'Satori Reader':            '#14b8a6',
+  'Manabi Reader':            '#06b6d4',
+  'Japanese Graded Readers':  '#84cc16',
+  'Shirabe Jisho':            '#94a3b8',
 }
 
 export default function CompetitorsPage() {

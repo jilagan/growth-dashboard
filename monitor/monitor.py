@@ -49,13 +49,25 @@ OUR_APPS = {
 }
 
 COMPETITORS = [
-    {"name": "Duolingo",        "id": "570060128"},   # Duolingo
-    {"name": "Anki",            "id": "373493387"},   # AnkiMobile
-    {"name": "Renshuu",         "id": "1542730063"},  # renshuu
-    {"name": "Kanji Study",     "id": "1078107994"},  # Kanji Study
-    {"name": "Tsurukame",       "id": "1367114761"},  # Tsurukame (WaniKani client)
-    {"name": "Bunpo",           "id": "1279720052"},  # Bunpo
-    {"name": "Shirabe Jisho",   "id": "1005203380"},  # Jisho dictionary
+    # General Japanese learning
+    {"name": "Duolingo",            "id": "570060128"},   # 4.8★ 97k ratings
+    {"name": "LingoDeer",           "id": "1261193709"},  # 4.75★ 27k ratings
+    {"name": "Renshuu",             "id": "1542730063"},  # 4.91★ 1.2k ratings
+    {"name": "Bunpo",               "id": "1279720052"},  # 4.92★ 17k ratings
+    {"name": "HelloTalk",           "id": "557130558"},   # 4.59★ 42k ratings
+    {"name": "Pimsleur",            "id": "1405735469"},  # 4.74★ 26k ratings — Kiku competitor
+    {"name": "JapanesePod101",      "id": "668386019"},   # 4.71★ 34k ratings — Kiku competitor
+    # Kanji / SRS
+    {"name": "Anki",                "id": "373493387"},   # AnkiMobile
+    {"name": "Kanji Study",         "id": "1078107994"},  # 4.74★ 6k ratings — Kanji competitor
+    {"name": "Tsurukame (WaniKani)","id": "1367114761"},  # 4.72★ — Kanji competitor
+    {"name": "Clozemaster",         "id": "1149199075"},  # 4.81★ 1.6k ratings
+    {"name": "Migaku",              "id": "1664096855"},  # 4.44★ — reading+listening
+    # Graded reading
+    {"name": "Satori Reader",       "id": "1382950847"},  # 4.78★ — direct Yomu competitor
+    {"name": "Manabi Reader",       "id": "1247286380"},  # 4.48★ — direct Yomu competitor
+    {"name": "Japanese Graded Readers", "id": "1223472704"}, # 3.41★
+    {"name": "Shirabe Jisho",       "id": "1005203380"},  # 4.89★ dictionary
 ]
 
 # Keywords to track per app (app_name → list of keywords)
