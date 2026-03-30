@@ -76,11 +76,11 @@ KEYWORDS = {
 
 # Reddit search queries
 REDDIT_QUERIES = [
-    ("Kanji Mentor",  "kanji_mentor"),
-    ("Kiku Mentor",   "kiku_mentor"),
-    ("Yomu Mentor",   "yomu_mentor"),
-    ("Nihongo Mentor", "suite"),
-    ("archmob",        "suite"),
+    ('"Kanji Mentor"',   "kanji_mentor", ["kanji mentor"]),
+    ('"Kiku Mentor"',    "kiku_mentor",  ["kiku mentor"]),
+    ('"Yomu Mentor"',    "yomu_mentor",  ["yomu mentor"]),
+    ('"Nihongo Mentor"', "suite",        ["nihongo mentor"]),
+    # Note: "archmob" omitted — collides with Dofus game terminology
 ]
 
 SUBREDDITS = ["LearnJapanese", "jlpt", "japanlife", "japanese"]
@@ -150,10 +150,9 @@ def collect_reddit() -> int:
         timeout=20,
     )
 
-    for query, app in REDDIT_QUERIES:
-        # Search globally first
+    for query, app, must_contain in REDDIT_QUERIES:
+        # Search globally first, then per subreddit
         searches = [("https://www.reddit.com/search.json", {"q": query, "limit": 25, "sort": "new"})]
-        # Then per subreddit
         for sub in SUBREDDITS:
             searches.append((
                 f"https://www.reddit.com/r/{sub}/search.json",
@@ -170,8 +169,12 @@ def collect_reddit() -> int:
                     post_id = d.get("id", "")
                     if not post_id or post_id in seen_ids:
                         continue
-                    seen_ids.add(post_id)
                     text = f"{d.get('title', '')} {d.get('selftext', '')}".strip()
+                    text_lower = text.lower()
+                    # Verify post actually mentions the app — reject false positives
+                    if not any(phrase in text_lower for phrase in must_contain):
+                        continue
+                    seen_ids.add(post_id)
                     rows.append({
                         "source": "reddit",
                         "app": app,
@@ -184,7 +187,7 @@ def collect_reddit() -> int:
                     })
                 time.sleep(0.5)
             except Exception as e:
-                print(f"  [WARN] reddit r/{sub} q={query!r}: {e}", file=sys.stderr)
+                print(f"  [WARN] {url} q={query!r}: {e}", file=sys.stderr)
 
     inserted = sb_insert("brand_mentions", rows, on_conflict="source,external_id")
     print(f"  → {inserted} new mentions ({len(rows)} fetched)")
